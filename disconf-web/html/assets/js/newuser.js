@@ -1,19 +1,6 @@
 var roleId = -1;
-var visitorRole = null;
 getSession();
 
-// visitorRole = window.VISITOR.role;
-//
-// validateRole();
-//
-// function validateRole() {
-//     alert(visitorRole);
-//     if (window.VISITOR.role !== "2") {
-//         $("#error").removeClass("hide");
-//         $("#error").html("您没有添加用户的权限！");
-//         $("#item_submit").attr("disabled", true);
-//     }
-// }
 //
 // 获取角色信息
 //
@@ -56,12 +43,6 @@ $("#item_submit").on("click", function (e) {
     if(user_password != confirm_password) {
         $("#error").removeClass("hide");
         $("#error").html("两次输入的密码不一致！");
-        return;
-    }
-
-    if(roleId==-1) {
-        $("#error").removeClass("hide");
-        $("#error").html("用户角色不能为空！如果下拉列表为空，说明您有没有添加用户的权限！");
         return;
     }
     $.ajax({

@@ -7,6 +7,33 @@
     var envId = -1;
     var version = "#";
 
+    //
+    // 获取Env信息
+    //
+    $.ajax({
+        type: "GET",
+        url: "/api/env/list"
+    }).done(
+        function (data) {
+            if (data.success === "true") {
+                var html = "";
+                var result = data.page.result;
+                $.each(result, function (index, item) {
+                    html += '<li><a rel=' + item.id + ' href="#">'
+                        + item.name + ' 环境</a></li>';
+                });
+                $("#envChoice").html(html);
+            }
+        });
+    $("#envChoice").on('click', 'li a', function () {
+        envId = $(this).attr('rel');
+        $("#env_info").html($(this).text());
+        $("#envChoice li").removeClass("active");
+        $(this).parent().addClass("active");
+        version = "#";
+        //fetchVersion(appId, envId);
+    });
+
     fetchUserList();
 
     //
